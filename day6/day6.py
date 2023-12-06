@@ -1,22 +1,22 @@
 import re
+from math import ceil
 
 # Time:      7  15   30
 # Distance:  9  40  200
 
 
 def possible_solutions(race_time, race_distance):
-    a = 1
     b = race_time
     c = race_distance
 
     # Calculate discriminant
-    delta = b ** 2 - 4 * a * c
+    delta = b ** 2 - 4 * c
 
-    root1 = round(((b + delta ** 0.5) / (2 * a)).real)
-    root2 = round(((b - delta ** 0.5) / (2 * a)).real)
+    root1 = ceil(((b + delta ** 0.5) / 2))
+    root2 = ceil(((b - delta ** 0.5) / 2))
 
     # Print the solution for the inequality
-    return root1 - root2 + 1
+    return root1 - root2
 
 
 def part1(file):
@@ -26,18 +26,15 @@ def part1(file):
         distances = re.findall("\d+", lines[1])
 
         result = 1
+        result_fun = 1
 
         for i in range(len(times)):
             possibilities = 0
             time = int(times[i])
             distance = int(distances[i])
-            for i in range(time):
-                if i * (time - i) > distance:
-                    possibilities += 1
-            print(possibilities)
-            result *= possibilities
-
-        print("result = " + str(result))
+            print("function solution: " + str(possible_solutions(time, distance)))
+            result_fun *= possible_solutions(time, distance)
+        print("function result: " + str(result_fun))
         file_o.close()
 
 
@@ -54,11 +51,7 @@ def part2(file):
         print(time)
         print(distance)
 
-        for i in range(time):
-            if i * (time - i) > distance:
-                result += 1
-
-        print("result = " + str(result))
+        print("function solution: " + str(possible_solutions(time, distance)))
         file_o.close()
 
 
