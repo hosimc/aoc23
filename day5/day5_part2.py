@@ -106,6 +106,7 @@ with open("input.txt", "r") as file:
     for seed_range in seeds_ranges:
         # def path2path(seed_def, path2path_dict):
         for seed in range(seed_range, seed_range + seeds_ranges[seed_range]):
+            print(seed)
             path2soil = path2path(seed, seed2soil)
             path2fert = path2path(path2soil, soil2fert)
             path2water = path2path(path2fert, fert2water)
@@ -115,6 +116,7 @@ with open("input.txt", "r") as file:
             path2loc = path2path(path2hum, hum2loc)
 
             seed2location[seed] = path2loc
+            print(str(seed) + " complete")
         print(seed_range)
 
     print()
