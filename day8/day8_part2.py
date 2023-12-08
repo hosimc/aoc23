@@ -45,8 +45,6 @@ while len(nodesA) > 0:
 print(steps_list)
 
 # LCM of all results
-result = steps_list[0]
-for step in steps_list[1:]:
-    result = lcm(result, step)
+result = lcm(*steps_list)
 
 print(result)
